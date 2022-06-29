@@ -38,6 +38,24 @@ module.exports = {
   walletAddress: () => {
     return walletAddress;
   },
+  getIsConnected: async address => {
+    let _isConnected = false;
+    await puppeteer.waitAndClick(mainPageElements.optionsMenu.button);
+    await puppeteer.waitAndClick(
+      mainPageElements.optionsMenu.connectedSitesButton,
+    );
+    try {
+      await puppeteer.waitForXPathText(
+        address,
+        `//*[@class="connected-sites-list__content-rows"]`,
+      );
+      _isConnected = true;
+    } catch (e) {
+      _isConnected = false;
+    }
+    await puppeteer.waitAndClick(mainPageElements.connectedSites.closeButton);
+    return _isConnected;
+  },
   // workaround for metamask random blank page on first run
   fixBlankPage: async () => {
     await puppeteer.metamaskWindow().waitForTimeout(1000);
@@ -304,11 +322,6 @@ module.exports = {
 
     setNetwork(network);
 
-    await puppeteer.waitForText(
-      mainPageElements.networkSwitcher.networkName,
-      network.networkName,
-    );
-
     await switchToCypressIfNotActive();
     return true;
   },
@@ -319,6 +332,29 @@ module.exports = {
     await puppeteer.waitAndClick(
       mainPageElements.optionsMenu.connectedSitesButton,
     );
+
+    // check whether there are connected sites
+    if (
+      (await puppeteer
+        .metamaskWindow()
+        .$(mainPageElements.connectedSites.subTitle)) !== null
+    ) {
+      const contains = await puppeteer
+        .metamaskWindow()
+        .$$eval(mainPageElements.connectedSites.subTitle, elements =>
+          elements.some(el =>
+            el.textContent.includes('is not connected to any sites'),
+          ),
+        );
+
+      if (contains) {
+        await puppeteer.waitAndClick(
+          mainPageElements.connectedSites.closeButton,
+        );
+        return true;
+      }
+    }
+
     await puppeteer.waitAndClick(mainPageElements.connectedSites.trashButton);
     await puppeteer.waitAndClick(
       mainPageElements.connectedSites.disconnectButton,
@@ -599,7 +635,17 @@ module.exports = {
     await puppeteer.init();
     await puppeteer.assignWindows();
     await puppeteer.assignActiveTabName('metamask');
+    await puppeteer.switchToMetamaskWindow();
     await puppeteer.metamaskWindow().waitForTimeout(1000);
+
+    // because we can't reset the extension it could be that it's already unlocked, fix that
+    const setUp = await puppeteer.isMetamaskSetUp();
+    if (setUp) {
+      walletAddress = await module.exports.getWalletAddress();
+      await puppeteer.switchToCypressWindow();
+      return true;
+    }
+
     if (
       (await puppeteer.metamaskWindow().$(unlockPageElements.unlockPage)) ===
       null
@@ -622,7 +668,9 @@ module.exports = {
       await puppeteer.switchToCypressWindow();
       return true;
     } else {
+      await puppeteer.switchToMetamaskWindow();
       await module.exports.unlock(password);
+
       walletAddress = await module.exports.getWalletAddress();
       await puppeteer.switchToCypressWindow();
       return true;

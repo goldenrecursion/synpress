@@ -1,15 +1,13 @@
-const helpers = require('../helpers');
-const puppeteer = require('../commands/puppeteer');
-const metamask = require('../commands/metamask');
-const synthetix = require('../commands/synthetix');
-const etherscan = require('../commands/etherscan');
+const helpers = require('./helpers');
+const puppeteer = require('./commands/puppeteer');
+const metamask = require('./commands/metamask');
+const synthetix = require('./commands/synthetix');
+const etherscan = require('./commands/etherscan');
 
-/**
- * @type {Cypress.PluginConfig}
- */
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+module.exports = function (on, config) {
+  if (!config.baseUrl) {
+    config.baseUrl = '';
+  }
 
   on('before:browser:launch', async (browser = {}, arguments_) => {
     if (browser.name === 'chrome' && browser.isHeadless) {
@@ -228,6 +226,7 @@ module.exports = (on, config) => {
         secretWordsOrPrivateKey,
         network,
         password,
+        baseUrl: config.baseUrl,
       });
       return true;
     },
