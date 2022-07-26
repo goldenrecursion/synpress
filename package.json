@@ -47,6 +47,8 @@
     "@cypress/react": "^6.0.0",
     "@testing-library/cypress": "^8.0.3",
     "@testing-library/react": "^12.1.5",
+    "@types/puppeteer-core": "5.4.0",
+    "@types/testing-library__cypress": "5.0.9",
     "axios": "0.26.1",
     "commander": "9.1.0",
     "cross-zip": "4.0.0",
@@ -58,8 +60,6 @@
   },
   "devDependencies": {
     "@microsoft/eslint-formatter-sarif": "2.1.7",
-    "@types/puppeteer-core": "5.4.0",
-    "@types/testing-library__cypress": "5.0.9",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-standard": "16.0.3",
