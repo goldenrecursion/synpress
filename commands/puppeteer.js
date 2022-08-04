@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer-core');
-const fetch = require('node-fetch');
+const fetch = await import('node-fetch');
 
 let puppeteerBrowser;
 let mainWindow;
