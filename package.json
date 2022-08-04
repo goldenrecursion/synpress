@@ -1,6 +1,6 @@
 {
   "name": "@synthetixio/synpress",
-  "version": "1.2.1-beta.1",
+  "version": "1.3.0",
   "description": "Synpress in an wrapper around Cypress test runner which extends its capabilities with conjunction of Puppeteer. It's used used across Synthetix projects.",
   "keywords": [
     "Synpress",
@@ -44,43 +44,46 @@
     "update:deps": "ncu -u -x 'node-fetch eslint' && npm install --legacy-peer-deps"
   },
   "dependencies": {
-    "@cypress/react": "^6.0.0",
-    "@testing-library/cypress": "^8.0.3",
-    "@testing-library/react": "^12.1.5",
-    "@types/puppeteer-core": "5.4.0",
-    "@types/testing-library__cypress": "5.0.9",
-    "axios": "0.26.1",
-    "commander": "9.1.0",
-    "cross-zip": "4.0.0",
-    "cypress": "^10.3.0",
-    "cypress-wait-until": "^1.7.2",
-    "etherscan-api": "10.0.5",
-    "node-fetch": "2.6.1",
-    "puppeteer-core": "^15.1.1"
+    "@cypress/react": "^6",
+    "@testing-library/cypress": "^8",
+    "@testing-library/react": "^12",
+    "@types/puppeteer-core": "^5",
+    "@types/testing-library__cypress": "^5",
+    "axios": "^0.27",
+    "commander": "^9",
+    "cross-zip": "^4",
+    "cypress": "^10",
+    "cypress-wait-until": "^1",
+    "etherscan-api": "^10",
+    "node-fetch": "^3",
+    "puppeteer-core": "^15"
   },
   "devDependencies": {
-    "@microsoft/eslint-formatter-sarif": "2.1.7",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-config-standard": "16.0.3",
-    "eslint-plugin-chai-friendly": "0.7.2",
-    "eslint-plugin-cypress": "2.12.1",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-standard": "4.1.0",
-    "eslint-plugin-testing-library": "5.2.1",
-    "eslint-plugin-ui-testing": "2.0.1",
-    "npm-check-updates": "12.5.8",
-    "prettier": "2.6.2",
-    "release-it": "14.14.0",
-    "serve": "13.0.2",
-    "start-server-and-test": "1.14.0"
+    "@microsoft/eslint-formatter-sarif": "^2",
+    "eslint": "^7",
+    "eslint-config-prettier": "^8",
+    "eslint-config-standard": "^16",
+    "eslint-plugin-chai-friendly": "^0.7",
+    "eslint-plugin-cypress": "^2",
+    "eslint-plugin-import": "^2",
+    "eslint-plugin-node": "^11",
+    "eslint-plugin-prettier": "^4",
+    "eslint-plugin-standard": "^4",
+    "eslint-plugin-testing-library": "^5",
+    "eslint-plugin-ui-testing": "^2",
+    "npm-check-updates": "^16",
+    "prettier": "^2",
+    "release-it": "^14",
+    "serve": "^13",
+    "start-server-and-test": "^1"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "volta": {
+    "node": "16.16.0"
   }
 }
