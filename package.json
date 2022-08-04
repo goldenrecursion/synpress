@@ -33,11 +33,6 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "lint:eslint": "eslint . --ext js",
     "lint:prettier": "prettier --check **/*.js",
-    "lint:sarif": "node lint.js . --ext js",
-    "release": "release-it --disable-metrics",
-    "release:major": "release-it major --disable-metrics",
-    "release:minor": "release-it minor --disable-metrics",
-    "release:patch": "release-it patch --disable-metrics",
     "start:server": "serve tests/test-dapp -p 3000",
     "test:e2e": "start-server-and-test 'npm run start:server' http-get://localhost:3000 'SYNPRESS_LOCAL_TEST=true node synpress.js run --configFile=tests/e2e/cypress.config.js'",
     "test:e2e:ci": "start-server-and-test 'npm run start:server' http-get://localhost:3000 'SYNPRESS_LOCAL_TEST=true node synpress.js run --group smoke-tests --record'",
@@ -59,10 +54,9 @@
     "puppeteer-core": "^15"
   },
   "devDependencies": {
-    "@microsoft/eslint-formatter-sarif": "^2",
-    "eslint": "^7",
+    "eslint": "^8",
     "eslint-config-prettier": "^8",
-    "eslint-config-standard": "^16",
+    "eslint-config-standard": "^17",
     "eslint-plugin-chai-friendly": "^0.7",
     "eslint-plugin-cypress": "^2",
     "eslint-plugin-import": "^2",
@@ -72,10 +66,7 @@
     "eslint-plugin-testing-library": "^5",
     "eslint-plugin-ui-testing": "^2",
     "npm-check-updates": "^16",
-    "prettier": "^2",
-    "release-it": "^14",
-    "serve": "^13",
-    "start-server-and-test": "^1"
+    "prettier": "^2"
   },
   "engines": {
     "node": ">=16"

@@ -29,7 +29,7 @@ module.exports = defineConfig({
     specPattern: 'tests/e2e/specs/**/*.cy.{js,jsx,ts,tsx}',
   },
   component: {
-    setupNodeEvents(on, config) {},
+    setupNodeEvents() {},
     specPattern: './**/*spec.{js,jsx,ts,tsx}',
   },
 });
