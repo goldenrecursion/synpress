@@ -256,10 +256,5 @@ module.exports = function (on, config) {
     config.env.SKIP_METAMASK_SETUP = true;
   }
 
-  // next component testing
-  if (config.testingType === 'component') {
-    require('@cypress/react/plugins/next')(on, config);
-  }
-
   return config;
 };

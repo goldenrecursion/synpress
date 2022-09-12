@@ -14,8 +14,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:cypress/recommended',
-    'plugin:ui-testing/cypress',
-    'plugin:testing-library/react',
+    'plugin:ui-testing/cypress'
   ],
   plugins: [
     'prettier',

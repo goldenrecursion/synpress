@@ -41,9 +41,6 @@
   "dependencies": {
     "@cypress/react": "^6",
     "@testing-library/cypress": "^8",
-    "@testing-library/react": "^12",
-    "@types/puppeteer-core": "^5",
-    "@types/testing-library__cypress": "^5",
     "axios": "^0.27",
     "commander": "^9",
     "cross-zip": "^4",
