@@ -21,7 +21,6 @@
   "author": {
     "name": "Synthetix"
   },
-  "type": "commonjs",
   "main": "launcher.js",
   "bin": {
     "synpress": "synpress.js"
