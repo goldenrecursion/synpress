@@ -1,13 +1,14 @@
+// trunk-ignore(eslint)
 declare namespace Cypress {
   interface Chainable<Subject> {
     /**
-     * Connect puppeteer with Cypress instance
+     * Connect playwright with Cypress instance
      * @example
-     * cy.initPuppeteer()
+     * cy.initPlaywright()
      */
-    initPuppeteer(): Chainable<Subject>;
+    initPlaywright(): Chainable<Subject>;
     /**
-     * Assign currently open tabs with puppeteer
+     * Assign currently open tabs with playwright
      * @example
      * cy.assignWindows()
      */
@@ -55,7 +56,7 @@ declare namespace Cypress {
      */
     getNetwork(): Chainable<Subject>;
     /**
-     * Add network in metamask
+     * Add network in metamask (and also switch to the newly added network)
      * @example
      * cy.addMetamaskNetwork({networkName: 'name', rpcUrl: 'https://url', chainId: '1', symbol: 'ETH', blockExplorer: 'https://url', isTestnet: true})
      */
@@ -63,7 +64,7 @@ declare namespace Cypress {
     /**
      * Change network in metamask
      * @example
-     * cy.changeMetamaskNetwork('kovan')
+     * cy.changeMetamaskNetwork('goerli')
      * cy.changeMetamaskNetwork('custom network')
      * cy.changeMetamaskNetwork({networkName: 'name'})
      */
@@ -80,7 +81,7 @@ declare namespace Cypress {
      * cy.createMetamaskAccount()
      * cy.createMetamaskAccount('accountName')
      */
-    createMetamaskAccount(accountName: string | undefined): Chainable<Subject>;
+    createMetamaskAccount(accountName?: string): Chainable<Subject>;
     /**
      * Switch metamask account
      * @example
@@ -97,11 +98,71 @@ declare namespace Cypress {
      */
     getMetamaskWalletAddress(): Chainable<Subject>;
     /**
+     * Activate ability (in metamask settings) to specify custom gas price and limit while doing transactions in metamask
+     * @example
+     * cy.activateAdvancedGasControlInMetamask()
+     */
+    activateAdvancedGasControlInMetamask(
+      skipSetup?: boolean,
+    ): Chainable<Subject>;
+    /**
+     * Activate ability (in metamask settings) to detect custom tokens using ConsenSys API in metamask
+     * @example
+     * cy.activateEnhancedTokenDetectionInMetamask()
+     */
+    activateEnhancedTokenDetectionInMetamask(
+      skipSetup?: boolean,
+    ): Chainable<Subject>;
+    /**
+     * Activate ability (in metamask settings) to show hex data while doing transaction in metamask
+     * @example
+     * cy.activateShowHexDataInMetamask()
+     */
+    activateShowHexDataInMetamask(skipSetup?: boolean): Chainable<Subject>;
+    /**
+     * Activate ability (in metamask settings) to show fiat conversions on testnets in metamask
+     * @example
+     * cy.activateTestnetConversionInMetamask()
+     */
+    activateTestnetConversionInMetamask(
+      skipSetup?: boolean,
+    ): Chainable<Subject>;
+    /**
+     * Activate ability (in metamask settings) to show testnet networks in metamask
+     * @example
+     * cy.activateShowTestnetNetworksInMetamask()
+     */
+    activateShowTestnetNetworksInMetamask(
+      skipSetup?: boolean,
+    ): Chainable<Subject>;
+    /**
      * Activate ability (in metamask settings) to specify custom nonce while doing transactions in metamask
      * @example
      * cy.activateCustomNonceInMetamask()
      */
-    activateCustomNonceInMetamask(): Chainable<Subject>;
+    activateCustomNonceInMetamask(skipSetup?: boolean): Chainable<Subject>;
+    /**
+     * Activate ability (in metamask settings) to dismiss secret recovery phrase reminder in metamask
+     * @example
+     * cy.activateDismissBackupReminderInMetamask()
+     */
+    activateDismissBackupReminderInMetamask(
+      skipSetup?: boolean,
+    ): Chainable<Subject>;
+    /**
+     * Activate enhanced gas fee UI in metamask settings
+     * @example
+     * cy.activateEnhancedGasFeeUIInMetamask()
+     */
+    activateEnhancedGasFeeUIInMetamask(skipSetup?: boolean): Chainable<Subject>;
+    /**
+     * Activate showing of custom network list in metamask settings
+     * @example
+     * cy.activateShowCustomNetworkListInMetamask()
+     */
+    activateShowCustomNetworkListInMetamask(
+      skipSetup?: boolean,
+    ): Chainable<Subject>;
     /**
      * Reset metamask account state in settings
      * @example
@@ -126,6 +187,12 @@ declare namespace Cypress {
      * cy.confirmMetamaskSignatureRequest()
      */
     confirmMetamaskSignatureRequest(): Chainable<Subject>;
+    /**
+     * Confirm metamask permission to sign Data message
+     * @example
+     * cy.confirmMetamaskDataSignatureRequest()
+     */
+    confirmMetamaskDataSignatureRequest(): Chainable<Subject>;
     /**
      * Reject metamask permission to sign message
      * @example
@@ -157,6 +224,31 @@ declare namespace Cypress {
      */
     rejectMetamaskDecryptionRequest(): Chainable<Subject>;
     /**
+     * Reject metamask permission to sign Data message
+     * @example
+     * cy.rejectMetamaskDataSignatureRequest()
+     */
+    rejectMetamaskDataSignatureRequest(): Chainable<Subject>;
+    /**
+     * Add custom token to metamask
+     * @example
+     * cy.importMetamaskToken('0x509ee0d083ddf8ac028f2a56731412edd63223b9')
+     * cy.importMetamaskToken({ address: '0x509ee0d083ddf8ac028f2a56731412edd63223b9', symbol: 'USDT'})
+     */
+    importMetamaskToken(tokenConfig?: object | string): Chainable<Subject>;
+    /**
+     * Confirm metamask request to add token
+     * @example
+     * cy.confirmMetamaskAddToken()
+     */
+    confirmMetamaskAddToken(): Chainable<Subject>;
+    /**
+     * Reject metamask request to add token
+     * @example
+     * cy.rejectMetamaskAddToken()
+     */
+    rejectMetamaskAddToken(): Chainable<Subject>;
+    /**
      * Confirm metamask permission to spend asset
      * @example
      * cy.confirmMetamaskPermissionToSpend()
@@ -172,16 +264,21 @@ declare namespace Cypress {
      * Accept metamask access request
      * @example
      * cy.acceptMetamaskAccess()
-     * cy.acceptMetamaskAccess(true)
+     * cy.acceptMetamaskAccess({allAccounts: true, signInSignature: true})
      */
-    acceptMetamaskAccess(allAccounts: boolean | undefined): Chainable<Subject>;
+    acceptMetamaskAccess(options?: {
+      allAccounts?: boolean;
+      signInSignature?: boolean;
+    }): Chainable<Subject>;
     /**
-     * Confirm metamask atransaction
+     * Confirm metamask transaction (auto-detects eip-1559 and legacy transactions)
      * @example
      * cy.confirmMetamaskTransaction()
-     * cy.confirmMetamaskTransaction({gasFee: 10, gasLimit: 1000000})
+     * cy.confirmMetamaskTransaction({ gasLimit: 1000000, baseFee: 20, priorityFee: 20 }) // eip-1559
+     * cy.confirmMetamaskTransaction({ gasLimit: 1000000, gasPrice: 20 }) // legacy
+     * cy.confirmMetamaskTransaction('aggressive') // eip-1559 only! => available options: 'low', 'market', 'aggressive', 'site' (site is usually by default)
      */
-    confirmMetamaskTransaction(gasConfig : object | undefined): Chainable<Subject>;
+    confirmMetamaskTransaction(gasConfig?: object | string): Chainable<Subject>;
     /**
      * Reject metamask transaction
      * @example
@@ -192,8 +289,9 @@ declare namespace Cypress {
      * Allow site to add new network in metamask
      * @example
      * cy.allowMetamaskToAddNetwork()
+     * cy.allowMetamaskToAddNetwork('close') // (waitForEvent)
      */
-    allowMetamaskToAddNetwork(): Chainable<Subject>;
+    allowMetamaskToAddNetwork(waitForEvent?: string): Chainable<Subject>;
     /**
      * Reject site to add new network in metamask
      * @example
@@ -233,15 +331,17 @@ declare namespace Cypress {
     /**
      * Run the flow for metamask setup
      * @example
-     * cy.setupMetamask('secret, words, ...', 'kovan', 'password for metamask')
+     * cy.setupMetamask() // will use defaults
+     * cy.setupMetamask('secret, words, ...', 'goerli', 'password for metamask')
      * cy.setupMetamask('secret, words, ...', {networkName: 'name', rpcUrl: 'https://url', chainId: 1, symbol: 'ETH', blockExplorer: 'https://url', isTestnet: true}, 'password for metamask')
-     * cy.setupMetamask('private_key', 'kovan', 'password for metamask')
+     * cy.setupMetamask('private_key', 'goerli', 'password for metamask')
      * cy.setupMetamask('private_key', {networkName: 'name', rpcUrl: 'https://url', chainId: 1, symbol: 'ETH', blockExplorer: 'https://url', isTestnet: true}, 'password for metamask')
      */
     setupMetamask(
-      secretWordsOrPrivateKey: string,
-      network: string | object,
-      password: string,
+      secretWordsOrPrivateKey?: string,
+      network?: string | object,
+      password?: string,
+      enableAdvancedSettings?: boolean,
     ): Chainable<Subject>;
     /**
      * Execute settle on Exchanger contract
@@ -282,7 +382,7 @@ declare namespace Cypress {
      * cy.waitForResources([{name:"fonts.gstatic.com/s/worksans",number:2}])
      */
     waitForResources(
-      resources: Array<{ name: string; number?: number }> | undefined,
+      resources?: Array<{ name: string; number?: number }>,
     ): Chainable<Subject>;
     /**
      * Assert that element top is within viewport

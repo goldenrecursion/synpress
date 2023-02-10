@@ -1,10 +1,10 @@
 import '@testing-library/cypress/add-commands';
 import 'cypress-wait-until';
 
-// puppeteer commands
+// playwright commands
 
-Cypress.Commands.add('initPuppeteer', () => {
-  return cy.task('initPuppeteer');
+Cypress.Commands.add('initPlaywright', () => {
+  return cy.task('initPlaywright');
 });
 
 Cypress.Commands.add('assignWindows', () => {
@@ -63,9 +63,62 @@ Cypress.Commands.add('getMetamaskWalletAddress', () => {
   });
 });
 
-Cypress.Commands.add('activateCustomNonceInMetamask', () => {
-  return cy.task('activateCustomNonceInMetamask');
+Cypress.Commands.add(
+  'activateAdvancedGasControlInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateAdvancedGasControlInMetamask', skipSetup);
+  },
+);
+
+Cypress.Commands.add(
+  'activateEnhancedTokenDetectionInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateEnhancedTokenDetectionInMetamask', skipSetup);
+  },
+);
+
+Cypress.Commands.add('activateShowHexDataInMetamask', (skipSetup = false) => {
+  return cy.task('activateShowHexDataInMetamask', skipSetup);
 });
+
+Cypress.Commands.add(
+  'activateTestnetConversionInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateTestnetConversionInMetamask', skipSetup);
+  },
+);
+
+Cypress.Commands.add(
+  'activateShowTestnetNetworksInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateShowTestnetNetworksInMetamask', skipSetup);
+  },
+);
+
+Cypress.Commands.add('activateCustomNonceInMetamask', (skipSetup = false) => {
+  return cy.task('activateCustomNonceInMetamask', skipSetup);
+});
+
+Cypress.Commands.add(
+  'activateDismissBackupReminderInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateDismissBackupReminderInMetamask', skipSetup);
+  },
+);
+
+Cypress.Commands.add(
+  'activateEnhancedGasFeeUIInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateEnhancedGasFeeUIInMetamask', skipSetup);
+  },
+);
+
+Cypress.Commands.add(
+  'activateShowCustomNetworkListInMetamask',
+  (skipSetup = false) => {
+    return cy.task('activateShowCustomNetworkListInMetamask', skipSetup);
+  },
+);
 
 Cypress.Commands.add('resetMetamaskAccount', () => {
   return cy.task('resetMetamaskAccount');
@@ -103,6 +156,26 @@ Cypress.Commands.add('rejectMetamaskSignatureRequest', () => {
   return cy.task('rejectMetamaskSignatureRequest');
 });
 
+Cypress.Commands.add('rejectMetamaskDataSignatureRequest', () => {
+  return cy.task('rejectMetamaskDataSignatureRequest');
+});
+
+Cypress.Commands.add('confirmMetamaskDataSignatureRequest', () => {
+  return cy.task('confirmMetamaskDataSignatureRequest');
+});
+
+Cypress.Commands.add('importMetamaskToken', tokenConfig => {
+  return cy.task('importMetamaskToken', tokenConfig);
+});
+
+Cypress.Commands.add('confirmMetamaskAddToken', () => {
+  return cy.task('confirmMetamaskAddToken');
+});
+
+Cypress.Commands.add('rejectMetamaskAddToken', () => {
+  return cy.task('rejectMetamaskAddToken');
+});
+
 Cypress.Commands.add('confirmMetamaskPermissionToSpend', () => {
   return cy.task('confirmMetamaskPermissionToSpend');
 });
@@ -111,8 +184,8 @@ Cypress.Commands.add('rejectMetamaskPermissionToSpend', () => {
   return cy.task('rejectMetamaskPermissionToSpend');
 });
 
-Cypress.Commands.add('acceptMetamaskAccess', allAccounts => {
-  return cy.task('acceptMetamaskAccess', allAccounts);
+Cypress.Commands.add('acceptMetamaskAccess', options => {
+  return cy.task('acceptMetamaskAccess', options);
 });
 
 Cypress.Commands.add('confirmMetamaskTransaction', gasConfig => {
@@ -123,8 +196,8 @@ Cypress.Commands.add('rejectMetamaskTransaction', () => {
   return cy.task('rejectMetamaskTransaction');
 });
 
-Cypress.Commands.add('allowMetamaskToAddNetwork', () => {
-  return cy.task('allowMetamaskToAddNetwork');
+Cypress.Commands.add('allowMetamaskToAddNetwork', waitForEvent => {
+  return cy.task('allowMetamaskToAddNetwork', { waitForEvent });
 });
 
 Cypress.Commands.add('rejectMetamaskToAddNetwork', () => {
@@ -155,11 +228,17 @@ Cypress.Commands.add('fetchMetamaskWalletAddress', () => {
 
 Cypress.Commands.add(
   'setupMetamask',
-  (secretWordsOrPrivateKey, network, password = 'Tester@1234') => {
+  (
+    secretWordsOrPrivateKey = 'test test test test test test test test test test test junk',
+    network = 'goerli',
+    password = 'Tester@1234',
+    enableAdvancedSettings = false,
+  ) => {
     return cy.task('setupMetamask', {
       secretWordsOrPrivateKey,
       network,
       password,
+      enableAdvancedSettings,
     });
   },
 );
@@ -251,7 +330,7 @@ Cypress.Commands.add('waitForResources', (resources = []) => {
 });
 
 // overwrite default cypress commands
-if (!Cypress.env('SKIP_RESOURCES_WAIT')) {
+if (Cypress.env('RESOURCES_WAIT')) {
   Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
     originalFn(url, options);
     return cy.waitForResources();
