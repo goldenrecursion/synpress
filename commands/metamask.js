@@ -1092,7 +1092,6 @@ module.exports = {
     await playwright.waitAndClick(
       confirmationPageElements.footer.cancelButton,
       notificationPage,
-      { waitForEvent: 'close' },
     );
     return true;
   },
@@ -1101,7 +1100,6 @@ module.exports = {
     await playwright.waitAndClick(
       confirmationPageElements.footer.approveButton,
       notificationPage,
-      { waitForEvent: 'close' },
     );
     return true;
   },
