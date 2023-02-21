@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
-    "@cypress/webpack-dev-server": "^3.2.3",
+    "@cypress/webpack-dev-server": "^3",
     "@drptbl/gremlins.js": "^2.2.1",
     "@metamask/test-dapp": "^5.3.0",
     "@microsoft/eslint-formatter-sarif": "^3.0.0",

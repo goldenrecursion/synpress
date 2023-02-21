@@ -337,9 +337,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/webpack-dev-server@npm:^3.2.3":
-  version: 3.2.3
-  resolution: "@cypress/webpack-dev-server@npm:3.2.3"
+"@cypress/webpack-dev-server@npm:^3":
+  version: 3.3.0
+  resolution: "@cypress/webpack-dev-server@npm:3.3.0"
   dependencies:
     find-up: 6.3.0
     fs-extra: 9.1.0
@@ -350,7 +350,7 @@ __metadata:
     tslib: ^2.3.1
     webpack-dev-server: ^4.7.4
     webpack-merge: ^5.4.0
-  checksum: 1b1c6b8b8e1491d7260a3c38a1b5779ce40d456e276531b1597c8fc65e1734ddc8604aaa4f0fc99c99b2a697b39a42f4daa0f7253d2d1af4e5ac31d6d7ae4036
+  checksum: 71c8571560939ced6ae97031d535e7a4e0e3cab097636fd7db932fc90b124df83d4cbc6bffb25048b126a46d30fec8d1603a2e7f8fe30f797b359505e2b813bf
   languageName: node
   linkType: hard
 
@@ -951,7 +951,7 @@ __metadata:
   resolution: "@synthetixio/synpress@workspace:."
   dependencies:
     "@cypress/code-coverage": ^3.10.0
-    "@cypress/webpack-dev-server": ^3.2.3
+    "@cypress/webpack-dev-server": ^3
     "@drptbl/gremlins.js": ^2.2.1
     "@metamask/test-dapp": ^5.3.0
     "@microsoft/eslint-formatter-sarif": ^3.0.0
