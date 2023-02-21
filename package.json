@@ -22,9 +22,7 @@
     "name": "Synthetix"
   },
   "main": "launcher.js",
-  "bin": {
-    "synpress": "synpress.js"
-  },
+  "bin": "synpress.js",
   "scripts": {
     "fix": "yarn fix:eslint && yarn fix:prettier",
     "fix:eslint": "eslint --fix **/*.js",
@@ -45,6 +43,7 @@
     "test:e2e:ci:anvil": "start-server-and-test 'yarn start:server' http-get://localhost:3000 'SKIP_METAMASK_SETUP=true SYNPRESS_LOCAL_TEST=true CYPRESS_USE_ANVIL=true node synpress.js run --configFile=synpress.config.js --record --group'"
   },
   "dependencies": {
+    "@playwright/test": "^1",
     "@testing-library/cypress": "^9",
     "@testing-library/react": "^13.4.0",
     "@types/testing-library__cypress": "^5.0.9",
@@ -52,16 +51,17 @@
     "commander": "^10",
     "cypress": "^12",
     "cypress-wait-until": "^1",
-    "etherscan-api": "^10",
-    "node-fetch": "^2",
-    "@playwright/test": "^1",
     "download": "^8",
-    "find-config": "^1"
+    "etherscan-api": "^10",
+    "find-config": "^1",
+    "node-fetch": "^2"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
     "@cypress/webpack-dev-server": "^3.2.3",
     "@drptbl/gremlins.js": "^2.2.1",
+    "@metamask/test-dapp": "^5.3.0",
+    "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-react-generate-property": "^1.1.2",
     "babel-plugin-react-remove-properties": "^0.3.0",
@@ -85,13 +85,11 @@
     "eslint-plugin-ui-testing": "^2.0.1",
     "eslint-plugin-unicorn": "^45.0.2",
     "ethers": "^6.0.2",
-    "prettier": "^2.8.3",
-    "serve": "^14.2.0",
-    "start-server-and-test": "^1.15.3",
-    "@metamask/test-dapp": "^5.3.0",
-    "@microsoft/eslint-formatter-sarif": "^3.0.0",
     "npm-check-updates": "^16.6.3",
-    "release-it": "^15.6.0"
+    "prettier": "^2.8.3",
+    "release-it": "^15.6.0",
+    "serve": "^14.2.0",
+    "start-server-and-test": "^1.15.3"
   },
   "engines": {
     "node": ">=14"
