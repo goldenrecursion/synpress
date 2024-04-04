@@ -52,7 +52,7 @@
     "@testing-library/cypress": "8.0.2",
     "@testing-library/react": "13.0.0",
     "@types/puppeteer-core": "5.4.0",
-    "@types/testing-library__cypress": "5.0.9",
+    "@types/testing-library__cypress": "5.0.10",
     "axios": "0.26.1",
     "babel-plugin-istanbul": "6.1.1",
     "babel-plugin-react-generate-property": "1.1.2",
