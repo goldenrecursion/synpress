@@ -13315,10 +13315,10 @@ swarm-js@^0.1.40:
     tar "^4.0.2"
     xhr-request "^1.0.1"
 
-synthetix-js@2.66.2:
-  version "2.66.2"
-  resolved "https://registry.npmjs.org/synthetix-js/-/synthetix-js-2.66.2.tgz#2870b1385b90345560954f1479beda3a25807238"
-  integrity sha512-xI+/7Q3waIp1wiysgjMskPUHVAGof99u7eYIfoJkUbix39vwnelhw/oq0WZzg4UizvBqdan6sBurWqMzsB5sCw==
+synthetix-js@2.68.2:
+  version "2.68.2"
+  resolved "https://registry.yarnpkg.com/synthetix-js/-/synthetix-js-2.68.2.tgz#5c70c3f96827b6e298e40663ead6d2e01743b14e"
+  integrity sha512-otPeHS0Z0JI+BtfFeVlYz7wg6sIyX/Sv0DYnW+wc6XdraC6JyTeTS7IgYUZ5EZyaNwocb8FdHtX5XPgU7KTE8g==
   dependencies:
     "@ledgerhq/hw-app-eth" "4.74.2"
     "@ledgerhq/hw-transport" "4.74.2"
@@ -13330,7 +13330,7 @@ synthetix-js@2.66.2:
     ethers "4.0.44"
     hdkey "1.1.1"
     lodash "4.17.15"
-    synthetix "2.66.2"
+    synthetix "2.68.2"
     trezor-connect "8.1.8"
     walletlink "2.0.2"
 
@@ -13349,10 +13349,10 @@ synthetix@2.41.0:
     solidity-parser-antlr "^0.4.11"
     web3-utils "1.2.2"
 
-synthetix@2.66.2:
-  version "2.66.2"
-  resolved "https://registry.npmjs.org/synthetix/-/synthetix-2.66.2.tgz#95dbfff19117e7c2f0ac0172c1f7b1b15729fa73"
-  integrity sha512-hzIgyaZjf1pQ06SZvMp3Txzz75gPeVqs6H88Bh6Vea6w9MnIKAITnUcHitYmqGQb7kW2IwDEmmMVJfZwRMAG1g==
+synthetix@2.68.2:
+  version "2.68.2"
+  resolved "https://registry.yarnpkg.com/synthetix/-/synthetix-2.68.2.tgz#bac0fb6de8083c2a6599160ab8740b3c39263802"
+  integrity sha512-wnKyuGsjyMz7VqRWvFE3kxMJbs9M6H30dmtbk0zU8VLsRe46A1qtVReTTXt6Nmj5qoNhHSwreTQNyugc5ySuLQ==
   dependencies:
     abi-decoder "2.3.0"
     commander "8.1.0"
